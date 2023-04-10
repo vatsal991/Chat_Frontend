@@ -1,0 +1,50 @@
+[
+  {
+    "Sender": 2,
+    "Type": "Text",
+    "Content": "Hii !",
+    "Status": 1
+  },
+  {
+    "Sender": 1,
+    "Type": "Text",
+    "Content": "Hii !",
+    "Status": 1
+  },
+  {
+    "Sender": 2,
+    "Type": "Text",
+    "Content": "How Are You?",
+    "Status": 1
+  },
+  {
+    "Sender": 1,
+    "Type": "Text",
+    "Content": "I'm Fine, What About You?",
+    "Status": 1
+  },
+  {
+    "Sender": 2,
+    "Type": "Text",
+    "Content": "I'm Fine Too, Lorem ipsum, dolor sit amet consectetur adipisicing elit.",
+    "Status": 1
+  },
+  {
+    "Sender": 1,
+    "Type": "Text",
+    "Content": "Exercitationem nihil facere blanditiis ad vero eos perferendis dicta? Vero vel sed nostrum ducimus illum, voluptatibus quae modi placeat aperiam totam cumque animi odio eligendi numquam debitis soluta sapiente! Assumenda ratione",
+    "Status": 1
+  },
+  {
+    "Sender": 2,
+    "Type": "Text",
+    "Content": "Architecto quisquam quasi ad, tenetur eos veritatis ea, aspernatur obcaecati perspiciatis incidunt error, hic a dicta?",
+    "Status": 1
+  },
+  {
+    "Sender": 1,
+    "Type": "Text",
+    "Content": " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem nihil facere blanditiis ad vero eos perferendis dicta?",
+    "Status": 0
+  }
+]

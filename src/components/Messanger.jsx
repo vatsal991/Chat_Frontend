@@ -7,6 +7,7 @@ import { Details } from "../parts/Details";
 
 export const Messanger = () => {
   const [ShowDetails, SetShowDetails] = useState(true);
+
   return (
     <div className="bg-gray-200 h-screen w-screen">
       <Header />
