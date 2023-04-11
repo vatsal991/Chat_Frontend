@@ -7,10 +7,28 @@ import Data from "../../Chats.json";
 import Cookies from "js-cookie";
 import { BsCheckLg } from "react-icons/bs";
 import { AiFillEye } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { socket } from "../socket";
 
 export const MessageBox = (props) => {
+  const LastMessage = useRef(null);
+
+  const [Chats, setChats] = useState([]);
   const [InputMessage, setMessage] = useState();
+
+  useEffect(() => {
+    setChats(Data);
+  }, []);
+
+  useEffect(() => {
+    socket.off("Message").on("Message", (Message) => {
+      setChats((e) => [...e, Message]);
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    LastMessage.current?.scrollIntoView({ behavior: "smooth" });
+  }, [Chats]);
 
   const Message = (e) => {
     setMessage(e.target.value);
@@ -19,12 +37,14 @@ export const MessageBox = (props) => {
   const UserID = Cookies.get("UserID");
 
   const SendMessage = () => {
-    Data.push({
+    const Data = {
       Sender: UserID,
       Type: "Text",
       Content: InputMessage,
       Status: 0,
-    });
+    };
+    setChats([...Chats, Data]);
+    socket.emit("Message", Data);
   };
 
   return (
@@ -61,20 +81,24 @@ export const MessageBox = (props) => {
         id="MessBoxScroll"
         className="h-[calc(100%_-_120px)] w-full p-5 flex flex-col overflow-y-scroll"
       >
-        {Data.map((Chat) => {
+        {Chats.map((Chat) => {
           if (UserID == Chat.Sender) {
             return <SentMess Chat={Chat} />;
           } else {
             return <RecievedMess Chat={Chat} />;
           }
         })}
+        <div
+          style={{ height: "100px", width: "100px", backgroundColor: "pink" }}
+          ref={LastMessage}
+        ></div>
       </div>
 
       <div className="h-[50px] w-full border-t bg-white absolute bottom-0 flex items-center px-5">
         <input
           type="text"
           placeholder="Type Here.."
-          className="border-none outline-none h-full w-full"
+          className="border-none outline-none h-full w-full focus:bg-white"
           name="Name"
           onChange={(e) => Message(e)}
         />
