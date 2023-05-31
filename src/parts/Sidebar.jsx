@@ -1,8 +1,21 @@
-import Image from "next/image";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { RiBuildingLine } from "react-icons/ri";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 export const Sidebar = () => {
+  const [Users, setUsers] = useState([]);
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    const ID = Cookies.get("UserID");
+    const FetchUser = await axios.get(`http://localhost:8000/${ID}`);
+    setUsers(FetchUser.data);
+  };
+
   return (
     <>
       <div
@@ -21,6 +34,10 @@ export const Sidebar = () => {
           />
         </div>
 
+        {Users.map(() => {
+          return <SidebarUserComp />;
+        })}
+        {/* <SidebarUserComp />
         <SidebarUserComp />
         <SidebarUserComp />
         <SidebarUserComp />
@@ -29,8 +46,7 @@ export const Sidebar = () => {
         <SidebarUserComp />
         <SidebarUserComp />
         <SidebarUserComp />
-        <SidebarUserComp />
-        <SidebarUserComp />
+        <SidebarUserComp /> */}
       </div>
     </>
   );
